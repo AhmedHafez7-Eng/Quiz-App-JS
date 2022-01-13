@@ -13,9 +13,35 @@
 body {
     font-family: Tahoma, Arial;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     background-color: var(--maleColor);
     padding: 50px 0;
+    gap: 20px 0;
+}
+
+.start {
+    padding: 15px 40px;
+    font-size: 16px;
+    color: var(--maleColor);
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+}
+
+.start:hover {
+    background-color: var(--maleColor);
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
+    color: #FFF;
+}
+
+.start:focus {
+    outline: none;
 }
 
 .quizApp {
@@ -27,6 +53,7 @@ body {
     padding: 15px 30px;
     background-color: var(--maleColor);
     /*#F07B6C  for pink*/
+    display: none;
 }
 
 .quizInfo {
