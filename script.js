@@ -1,6 +1,5 @@
 
 
-
 const data =
 
     [
@@ -61,6 +60,15 @@ function checkans(ans) {
 
 
 //////////////////////
+///////
+//let container= document.getElementById('devid');
+// let next = document.getElementById('nextbutt');
+// let start = document.getElementById('stbutt');
+// let show = document.getElementById('showbutt');
+// let hiden = document.getElementById('hide');
+// let finish = document.getElementById('finish');
+// let your_result = document.getElementById('result')
+//showQues(data, 'devid', next, start, show)
 function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
     let counter = 0; let i = 0;
     let dev = document.getElementById(idOfDiv);
@@ -110,35 +118,39 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
         nextbutt.onclick = function () {
             let [v1, v2, v3, v4, v5] = document.getElementsByName(`value${i}`)
             // if (i == data.length - 1) {
-                
+
             //     nextbutt.style.display = 'none';
             //     finish.style.display = 'block'; dev.innerHTML = checkans(arr)
             // }
             // // let [v1, v2, v3, v4] = document.getElementsByName(`value${i}`)
-            
-                if (!v1.checked && !v2.checked && !v3.checked && !v4.checked && !v5.checked)
-                    alert('select answer')
 
-                else {
-                    // if(!v1.checked&&!v2.checked&&!v3.checked&&!v4.checked&&!v5.checked)
-                    // alert('select answer')
-                    for (let j = 0; j < 5; j++) {
-                        if (document.getElementsByName(`value${i}`)[j].checked)
-                            arr.push(document.getElementsByName(`value${i}`)[j].value)
-                    }
-                    if(i<data.length-1){
+            if (!v1.checked && !v2.checked && !v3.checked && !v4.checked && !v5.checked)
+                alert('select answer')
+
+            else {
+                // if(!v1.checked&&!v2.checked&&!v3.checked&&!v4.checked&&!v5.checked)
+                // alert('select answer')
+                for (let j = 0; j < 5; j++) {
+                    if (document.getElementsByName(`value${i}`)[j].checked)
+                        arr.push(document.getElementsByName(`value${i}`)[j].value)
+                }
+                if (i < data.length - 1) {
                     i++;
                     //i++;display(i);
 
 
-                    display(i)}
-                    else{nextbutt.style.display = 'none';
-                       finish.style.display = 'block'; 
-                       finish.onclick=function(){
-                       finish.style.display='none'
-                       dev.innerHTML = `your result${checkans(arr)}`}}
+                    display(i)
                 }
-            
+                else {
+                    nextbutt.style.display = 'none';
+                    finish.style.display = 'block';
+                    finish.onclick = function () {
+                        finish.style.display = 'none'
+                        dev.innerHTML = `your result${checkans(arr)}`
+                    }
+                }
+            }
+
         }
 
 
@@ -168,12 +180,13 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
 
 
 }
+
 ////////
-//let container= document.getElementById('devid');
+let container = document.getElementById('devid');
 let next = document.getElementById('nextbutt');
 let start = document.getElementById('stbutt');
 let show = document.getElementById('showbutt');
 let hiden = document.getElementById('hide');
 let finish = document.getElementById('finish');
-let your_result=document.getElementById('result')
-showQues(data, 'devid', next, start, show)
+let your_result = document.getElementById('result')
+showQues(data, 'devid', next, start, show);
