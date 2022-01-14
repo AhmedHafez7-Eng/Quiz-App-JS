@@ -36,16 +36,16 @@ submit.addEventListener('click', function (e) {
 
         }
         if (input[i].type === "radio") {
-            count++;
-            check = input[i].checked;
-            radioCheck[i] = check;
+            count++; check = input[i].checked; radioCheck[i] = check;
             if (count % 2 == 0) {
                 if ((radioCheck[i] == false) && (radioCheck[i - 1] == false)) {
-                    alert("please fill the gender field");
-                    e.preventDefault();
-                }
-                else {
-                    localStorage.setItem("gender", firstForm[i].value);
+                    alert("please fill the gender field"); e.preventDefault();
+                } else {
+                    if (document.getElementById("female").checked) {
+                        localStorage.setItem("gender", "female");
+                    } else {
+                        localStorage.setItem("gender", "male");
+                    }
                 }
             }
         }

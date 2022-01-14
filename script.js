@@ -3,7 +3,7 @@ import { questions as ques } from './questions.js';
 
 const data = ques.Questions;
 
-var gender = "female";
+var gender = localStorage.getItem("gender");
 
 ////////
 let App = document.getElementById("quizApp");
@@ -26,7 +26,6 @@ var changeStyle = (arr, style) => {
 if (gender === "female") {
     changeStyle([
         document.body,
-        App,
         container
     ], "background-color: var(--femaleColor)");
 
@@ -125,10 +124,6 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
                 changeStyle([
                     App
                 ], "display: flex; background-color: var(--femaleColor)")
-            } else {
-                changeStyle([
-                    App
-                ], "display: flex; background-color: var(--maleColor)")
             }
 
             title = document.createElement('div');
@@ -151,10 +146,6 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
                 changeStyle([
                     answersArea
                 ], "background-color: var(--femaleColor)")
-            } else {
-                changeStyle([
-                    answersArea
-                ], "background-color: var(--maleColor)")
             }
 
             createlabel(answersArea, i);
@@ -210,10 +201,6 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
                             changeStyle([
                                 result
                             ], "background-color: var(--femaleColor)")
-                        } else {
-                            changeStyle([
-                                result
-                            ], "background-color: var(--maleColor)")
                         }
 
                         result.innerHTML = `Your Result is: ${checkans(arr)} / ${ques.TotalDegree}`
@@ -239,9 +226,18 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
             counter++;
             nextbutt.style.display = 'none';
             console.log(counter);
-            dev.style.justifyContent = 'center'
-            dev.innerHTML = `Time Out, Your Result is: ${checkans(arr)} / ${ques.TotalDegree}`;
-            dev.style.fontWeight = "bold"
+
+            var result = document.createElement('div')
+            result.setAttribute('class', 'results')
+
+            if (gender === "female") {
+                changeStyle([
+                    result
+                ], "background-color: var(--femaleColor)")
+            }
+
+            result.innerHTML = `Time Out, Your Result is: ${checkans(arr)} / ${ques.TotalDegree}`
+            result.style.fontWeight = "bold"
             if (checkans(arr) < 50) {
                 result.classList.add('bad')
             } else if (checkans(arr) >= 50 && checkans(arr) <= 80) {
@@ -249,6 +245,10 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
             } else {
                 result.classList.add('perfect')
             }
+
+            dev.innerHTML = ""
+            dev.style.justifyContent = 'center'
+            dev.insertAdjacentElement("afterbegin", result);
             clearInterval(t);
         }, 1_800_000);
     }
