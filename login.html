@@ -1,0 +1,161 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="https://cdn.dribbble.com/users/296198/screenshots/5529998/oquiz_4x.png"
+        type="image/x-icon">
+    <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 32px;
+            color: brown;
+            margin: 50px auto 7px;
+            padding: 15px;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+            width: fit-content;
+            border-radius: 5px;
+        }
+
+        form {
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+            margin: 0 auto 2rem;
+            max-width: 80%;
+            padding: 30px 20px;
+            border-radius: 5px;
+        }
+
+        .data {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 650px) {
+            .data {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px 0;
+            }
+        }
+
+        form label {
+            display: inline-block;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="password"] {
+            width: 70%;
+            border: 1px solid grey;
+            padding: 10px;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+            /* font-size: 1.2rem; */
+            margin: 0.3rem 0;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+            border: none;
+        }
+
+        form input[type="radio"],
+        form input[type="radio"]+label,
+        form input[type="checkbox"],
+        form input[type="checkbox"]+label {
+            display: inline-block;
+            font-weight: normal;
+        }
+
+        form input[type="checkbox"]+label {
+            margin: 0;
+            margin-right: 25px;
+        }
+
+        form select {
+            padding: 7px;
+            width: 200px;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+            border: none;
+        }
+
+        form select:focus,
+        form input:focus {
+            border: thin solid rgb(0 0 0 / 0.2);
+        }
+
+        .buttons {
+            width: 100%;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .buttons input[type="submit"],
+        .buttons input[type="reset"] {
+            border: none;
+            padding: 7px 15px;
+            background-color: forestgreen;
+            color: cornsilk;
+            cursor: pointer;
+        }
+
+        .buttons input[type="reset"] {
+            background-color: crimson;
+            margin-left: 20px;
+        }
+
+        h3,
+        h4 {
+            color: #fff;
+            display: none;
+            background-color: red;
+            padding: 10px;
+            width: fit-content;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        h3 {
+            background-color: chartreuse;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 class="title">Login</h2>
+    <form name="myform" method="post" action="index.html">
+        <div class="data">
+            <label for="name">User Name:</label>
+            <input type="text" name="username" id="username" />
+            <h4 id="usernameError"></h4>
+        </div>
+
+        <div class="data">
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="password" />
+            <h4 id="passwordError"></h4>
+        </div>
+
+        <div class="buttons">
+            <input type="submit" value="Sign Up" />
+            <input type="reset" value="Reset" id="resetBtn" />
+        </div>
+    </form>
+
+</body>
+
+</html>
