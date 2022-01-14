@@ -23,7 +23,6 @@ body {
 #start {
     padding: 15px 40px;
     font-size: 16px;
-    color: var(--maleColor);
     cursor: pointer;
     font-weight: bold;
     border: none;
@@ -32,19 +31,19 @@ body {
     -moz-transition: all .3s ease;
     -ms-transition: all .3s ease;
     -o-transition: all .3s ease;
+    color: var(--maleColor);
+    background-color: #FFF;
 }
 
 #start:hover {
-    background-color: var(--maleColor);
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
-    color: #FFF;
 }
 
 #start:focus {
     outline: none;
 }
 
-.quizApp {
+#quizApp {
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -114,7 +113,7 @@ body {
     width: 100%;
 }
 
-.quizApp .answersArea .answer {
+.answer {
     background-color: var(--maleColor);
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.7);
     padding: 15px;
@@ -122,11 +121,21 @@ body {
     gap: 10px;
 }
 
-.quizApp .answersArea .answer input[type="Radio"]:checked {
-    color: #0075ff;
+.answer input[type='radio']:checked::after {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    top: 0;
+    left: 0;
+    position: relative;
+    background-color: #00dd81;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 1px solid white;
 }
 
-.quizApp .answersArea .answer label {
+.answer label {
     cursor: pointer;
     font-weight: bold;
     font-size: 14px;
@@ -142,6 +151,7 @@ body {
     padding: 15px;
     font-size: 16px;
     color: var(--maleColor);
+    background-color: #FFF;
     cursor: pointer;
     font-weight: bold;
     border: none;
@@ -155,9 +165,7 @@ body {
 
 #nextbutt:hover,
 #finish:hover {
-    background-color: var(--maleColor);
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
-    color: #FFF;
 }
 
 #nextbutt:focus,
@@ -176,20 +184,17 @@ body {
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
     padding: 15px;
     color: #FFF;
-}
-
-.quizApp .results span {
     font-weight: bold;
 }
 
-.quizApp .results span.bad {
+.results.bad {
     color: #be0a0a;
 }
 
-.quizApp .results span.good {
+.results.good {
     color: #fcee2b;
 }
 
-.quizApp .results span.perfect {
+.results.perfect {
     color: #24bd2b;
 }

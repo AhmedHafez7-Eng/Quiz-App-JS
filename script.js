@@ -2,6 +2,39 @@
 import { questions as ques } from './questions.js';
 
 const data = ques.Questions;
+
+var gender = "male";
+
+////////
+let App = document.getElementById("quizApp");
+let container = document.getElementById('quizArea');
+let nextbutt = document.getElementById('nextbutt');
+var stbutt = document.getElementById('start');
+let show = document.getElementById('showbutt');
+let hiden = document.getElementById('hide');
+let finish = document.getElementById('finish');
+let your_result = document.getElementById('result');
+
+
+var changeStyle = (arr, style) => {
+    arr.forEach(element => {
+        element.style.cssText = style;
+    });
+}
+// =================================================
+
+if (gender === "female") {
+    changeStyle([
+        document.body,
+        App,
+        container
+    ], "background-color: var(--femaleColor)");
+
+    changeStyle([
+        stbutt, nextbutt
+    ], "color: #FFF; color: var(--femaleColor)");
+}
+
 // const data =
 //     [
 //         {
@@ -39,6 +72,16 @@ function createlabel(wheretoappend, index) {
         var answer = document.createElement('div')
         answer.setAttribute('class', 'answer')
 
+        if (gender === "female") {
+            changeStyle([
+                answer
+            ], "background-color: var(--femaleColor)")
+        } else {
+            changeStyle([
+                answer
+            ], "background-color: var(--maleColor)")
+        }
+
         checked[i] = document.createElement('input')
 
         label[i] = document.createElement('label')
@@ -48,6 +91,7 @@ function createlabel(wheretoappend, index) {
         checked[i].setAttribute('id', i)
         checked[i].setAttribute('name', `value${index}`)
         checked[i].setAttribute('value', `${data[index].Answers[i]}`)
+
         answer.appendChild(checked[i])
         answer.appendChild(label[i]);
 
@@ -63,6 +107,7 @@ function checkans(ans) {
         if (data[i].CorrectAnswer == ans[i])
             result += 10;
     }
+
     return result;
 }
 
@@ -76,7 +121,15 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
 
         function display(i) {
 
-            document.querySelector(".quizApp").style = "display: flex";
+            if (gender === "female") {
+                changeStyle([
+                    App
+                ], "display: flex; background-color: var(--femaleColor)")
+            } else {
+                changeStyle([
+                    App
+                ], "display: flex; background-color: var(--maleColor)")
+            }
 
             title = document.createElement('div');
             title.setAttribute('class', 'quizTitle');
@@ -93,6 +146,16 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
             var answersArea = document.createElement('div');
             answersArea.setAttribute('class', 'answersArea');
             dev.appendChild(answersArea);
+
+            if (gender === "female") {
+                changeStyle([
+                    answersArea
+                ], "background-color: var(--femaleColor)")
+            } else {
+                changeStyle([
+                    answersArea
+                ], "background-color: var(--maleColor)")
+            }
 
             createlabel(answersArea, i);
         }
@@ -133,11 +196,35 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
                 else {
                     nextbutt.style.display = 'none';
                     finish.style.display = 'block';
+                    if (gender === "female") {
+                        changeStyle([
+                            finish
+                        ], "color: #FFF; color: var(--femaleColor)");
+                    }
                     finish.onclick = function () {
                         finish.style.display = 'none'
                         var result = document.createElement('div')
                         result.setAttribute('class', 'results')
+
+                        if (gender === "female") {
+                            changeStyle([
+                                result
+                            ], "background-color: var(--femaleColor)")
+                        } else {
+                            changeStyle([
+                                result
+                            ], "background-color: var(--maleColor)")
+                        }
+
                         result.innerHTML = `Your Result is: ${checkans(arr)} / ${ques.TotalDegree}`
+
+                        if (checkans(arr) < 50) {
+                            result.classList.add('bad')
+                        } else if (checkans(arr) >= 50 && checkans(arr) <= 80) {
+                            result.classList.add('good')
+                        } else {
+                            result.classList.add('perfect')
+                        }
 
                         dev.innerHTML = ""
                         dev.style.justifyContent = 'center'
@@ -152,18 +239,11 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
             counter++;
             nextbutt.style.display = 'none';
             console.log(counter);
-            dev.innerHTML = 'SORRY,GAME OVER  :)';
+            dev.style.justifyContent = 'center'
+            dev.innerHTML = `Time Out, Your Result is: ${checkans(arr)} / ${ques.TotalDegree}`;
             clearInterval(t);
-        }, 1800000);
+        }, 1_800_000);
     }
 }
-
-////////
-let container = document.getElementById('quizArea');
-let nextbutt = document.getElementById('nextbutt');
-let start = document.getElementById('start');
-let show = document.getElementById('showbutt');
-let hiden = document.getElementById('hide');
-let finish = document.getElementById('finish');
-let your_result = document.getElementById('result')
-showQues(data, 'quizArea', nextbutt, start, show);
+///////
+showQues(data, 'quizArea', nextbutt, stbutt, show);
