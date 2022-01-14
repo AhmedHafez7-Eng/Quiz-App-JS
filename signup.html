@@ -1,0 +1,157 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="https://cdn.dribbble.com/users/296198/screenshots/5529998/oquiz_4x.png"
+    />
+    <title>Sign Up</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+      }
+
+      .title {
+        text-align: center;
+        font-size: 32px;
+        color: brown;
+        margin: 50px auto 7px;
+        padding: 15px;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+        width: fit-content;
+        border-radius: 5px;
+      }
+
+      form {
+        box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+        margin: 0 auto 2rem;
+        max-width: 60rem;
+        padding: 20px;
+        border-radius: 5px;
+      }
+
+      form label {
+        /* width: 7%; */
+        display: block;
+        margin: 25px 0 10px;
+        font-weight: bold;
+      }
+
+      form input[type="text"],
+      form input[type="email"],
+      form input[type="password"] {
+        width: 70%;
+        border: 1px solid grey;
+        padding: 10px;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+        /* font-size: 1.2rem; */
+        margin: 0.3rem 0;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+        border: none;
+      }
+
+      form input[type="radio"],
+      form input[type="radio"] + label,
+      form input[type="checkbox"],
+      form input[type="checkbox"] + label {
+        display: inline-block;
+        font-weight: normal;
+      }
+
+      form input[type="checkbox"] + label {
+        margin: 0;
+        margin-right: 25px;
+      }
+
+      form select {
+        padding: 7px;
+        width: 200px;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+        border: none;
+      }
+
+      form select:focus,
+      form input:focus {
+        border: thin solid rgb(0 0 0 / 0.2);
+      }
+
+      .buttons {
+        width: 100%;
+        margin-top: 30px;
+      }
+
+      .buttons input[type="submit"],
+      .buttons input[type="reset"] {
+        border: none;
+        padding: 7px 15px;
+        background-color: forestgreen;
+        color: cornsilk;
+        cursor: pointer;
+      }
+
+      .buttons input[type="reset"] {
+        background-color: crimson;
+        margin-left: 20px;
+      }
+
+      h3,
+      h4 {
+        color: #fff;
+        display: none;
+        background-color: red;
+        padding: 10px;
+        width: fit-content;
+        margin: 5px 0;
+        border-radius: 5px;
+      }
+
+      h3 {
+        background-color: chartreuse;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2 class="title">Register Now!</h2>
+    <form name="myform" method="post" action="login.html" id="first_form">
+      <label for="name">User Name:</label>
+      <input type="text" name="username" id="username" />
+      <h4 id="usernameError"></h4>
+
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" />
+      <h4 id="emailError"></h4>
+
+      <label for="password">Password: </label>
+      <input type="password" name="password" id="password" />
+      <h4 id="passwordError"></h4>
+
+      <label for="confpassword">Confirm Password: </label>
+      <input type="password" name="confpassword" id="confpassword" />
+      <h4 id="confpasswordError"></h4>
+
+      <label>Gender:</label>
+      <h3 id="disp"></h3>
+      <h4 id="radioError"></h4>
+      <input type="radio" name="gender" id="male" value="Male" />
+      <label for="male">Male</label>
+      <input type="radio" name="gender" id="female" value="Female" />
+      <label for="female">Female</label>
+
+      <div class="buttons">
+        <input type="submit" value="Sign Up" id="submit" />
+        <input type="reset" value="Reset" id="resetBtn" />
+      </div>
+    </form>
+    <script src="./signup.js"></script>
+  </body>
+</html>
