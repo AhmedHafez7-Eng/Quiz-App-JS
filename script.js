@@ -26,6 +26,7 @@ var changeStyle = (arr, style) => {
 if (gender === "female") {
     changeStyle([
         document.body,
+        App,
         container
     ], "background-color: var(--femaleColor)");
 
@@ -124,6 +125,10 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
                 changeStyle([
                     App
                 ], "display: flex; background-color: var(--femaleColor)")
+            } else {
+                changeStyle([
+                    App
+                ], "display: flex; background-color: var(--maleColor)")
             }
 
             title = document.createElement('div');
@@ -181,8 +186,6 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
                         checked[j].setAttribute('value', `${data[i].Answers[j]}`)
                         label[j].innerHTML = data[i].Answers[j]
                     }
-
-
                 }
                 else {
                     nextbutt.style.display = 'none';
@@ -250,7 +253,7 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
             dev.style.justifyContent = 'center'
             dev.insertAdjacentElement("afterbegin", result);
             clearInterval(t);
-        }, 1_800_000);
+        }, ques.QuizTime * 60 * 1000);
     }
 }
 ///////
