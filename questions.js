@@ -1,6 +1,6 @@
 const questions = {
     "QuizName": "HTML 5",
-    "QuizTime": 1,
+    "QuizTime": 30,
     "TotalDegree": 100,
     "Questions": [{
         "Header": "Why We Use &lt;br&gt; Element",
