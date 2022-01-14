@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <button class="start">Start Quiz</button>
+    <button id="start">Start Quiz</button>
     <div class="quizApp">
         <div class="quizInfo">
             <div class="welcomeMsg">
@@ -31,10 +31,16 @@
                 30:00
             </div>
         </div>
-        <div class="quizArea"></div>
+        <div id="selectAnswer"></div>
+        <div id="quizArea"></div>
+        <button id='nextbutt' style="display: none;">next</button>
+        <button id='showbutt' style="display: none;">show</button>
+        <button id='hide' style="display: none;">hide</button>
+        <button id='finish' style="display:none">finish</button>
+        <button id='result' style="display: none;">get your result</button>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" type="module"></script>
 </body>
 
 </html>

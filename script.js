@@ -1,77 +1,73 @@
 
+import { questions as ques } from './questions.js';
 
-const data =
+const data = ques.Questions;
+// const data =
+//     [
+//         {
+//             Header: 'what is 2*5',
+//             Answers: [2, 5, 10, 15, 20],
+//             Correctanswer: 10,
+//             Degree: 10
+//         },
+//         {
+//             Header: 'what is 2*1',
+//             Answers: [2, 5, 10, 15, 20],
+//             Correctanswer: 2,
+//             Degree: 10
+//         },
 
-    [
-        {
-            Header: 'what is 2*5',
-            Answers: [2, 5, 10, 15, 20],
-            Correctanswer: 10,
-            Degree: 10
-        },
-        {
-            Header: 'what is 2*1',
-            Answers: [2, 5, 10, 15, 20],
-            Correctanswer: 2,
-            Degree: 10
-        },
-
-        {
-            Header: 'what is 2*4',
-            Answers: [2, 5, 10, 15, 8],
-            Correctanswer: 8,
-            Degree: 10
-        },
-        {
-            Header: 'what is 3*4',
-            Answers: [2, 5, 12, 15, 8],
-            Correctanswer: 12,
-            Degree: 10
-        }]
+//         {
+//             Header: 'what is 2*4',
+//             Answers: [2, 5, 10, 15, 8],
+//             Correctanswer: 8,
+//             Degree: 10
+//         },
+//         {
+//             Header: 'what is 3*4',
+//             Answers: [2, 5, 12, 15, 8],
+//             Correctanswer: 12,
+//             Degree: 10
+//         }]
 
 /////////////////////////////////////////////////
-let arr = []; let label=[]; let checked=[];
+let arr = []; let label = []; let checked = [];
 function createlabel(wheretoappend, index) {
-    
-    for (let i = 0; i < 5; i++) {
+
+    for (let i = 0; i < 4; i++) {
+
+        answer = document.createElement('div')
+        answer.setAttribute('class', 'answer')
+
         checked[i] = document.createElement('input')
+
         label[i] = document.createElement('label')
+        label[i].setAttribute('for', i);
+
         checked[i].setAttribute('type', 'radio')
+        checked[i].setAttribute('id', i)
         checked[i].setAttribute('name', `value${index}`)
-         checked[i].setAttribute('value', `${data[index].Answers[i]}`)
-        wheretoappend.appendChild(checked[i])
-        wheretoappend.appendChild(label[i]);
+        checked[i].setAttribute('value', `${data[index].Answers[i]}`)
+        answer.appendChild(checked[i])
+        answer.appendChild(label[i]);
 
-            label[i].innerHTML = data[index].Answers[i]
-        
+        label[i].innerHTML = data[index].Answers[i]
 
-
+        wheretoappend.appendChild(answer);
     }
-
 }
+
 function checkans(ans) {
     let result = 0;
     for (let i = 0; i < data.length; i++) {
         if (data[i].Correctanswer == ans[i])
             result += 10;
-
     }
     return result;
 }
 
-
-//////////////////////
-///////
-//let container= document.getElementById('devid');
-// let next = document.getElementById('nextbutt');
-// let start = document.getElementById('stbutt');
-// let show = document.getElementById('showbutt');
-// let hiden = document.getElementById('hide');
-// let finish = document.getElementById('finish');
-// let your_result = document.getElementById('result')
-//showQues(data, 'devid', next, start, show)
 function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
-    let counter = 0; let i = 0; let title, header, answer
+    let counter = 0; let i = 0; let title, header
     let dev = document.getElementById(idOfDiv);
 
     stbutt.onclick = function () {
@@ -80,77 +76,58 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
 
         function display(i) {
 
+            document.querySelector(".quizApp").style = "display: flex";
 
             title = document.createElement('div');
+            title.setAttribute('class', 'quizTitle');
+
             header = document.createElement('div');
-            answer = document.createElement('label')
+            header.setAttribute('class', 'quizHeader');
+
             dev.appendChild(title);
             dev.appendChild(header)
+
             title.innerHTML = `QUSETION ${i + 1}`;
-            header.innerHTML = `Qusetion Header : ${data[i].Header}`
-            createlabel(dev, i);
-            // showbutt.style.display = 'block'
-            // showbutt.onclick = function () {
-            //     let correctans = document.createElement('div');
-            //     dev.appendChild(correctans);
-            //     showbutt.style.display = 'none';
-            //     hiden.style.display = 'block'
-            //     hiden.onclick = () => {
-            //         hiden.style.display = 'none';
-            //         correctans.innerHTML = '';
-            //         showbutt.style.display = 'block';
+            header.innerHTML = data[i].Header
 
-            //     }
+            answersArea = document.createElement('div');
+            answersArea.setAttribute('class', 'answersArea');
+            dev.appendChild(answersArea);
 
-
-            //     correctans.innerHTML = data[i].Correctanswer;
-            //}
-            //     hiden.onclick=()=>{hiden.style.display='none';
-
-            //     showbutt.style.display='block';
-
-            // }
-
+            createlabel(answersArea, i);
         }
 
         display(i)
-        
-        nextbutt.onclick = function () {
-            let [v1, v2, v3, v4, v5] = document.getElementsByName('value0')
-            // if (i == data.length - 1) {
 
-            //     nextbutt.style.display = 'none';
-            //     finish.style.display = 'block'; dev.innerHTML = checkans(arr)
-            // }
-            // // let [v1, v2, v3, v4] = document.getElementsByName(`value${i}`)
+        nextbutt.onclick = function () {
+            let [v1, v2, v3, v4] = document.getElementsByName('value0')
 
             if (!v1.checked && !v2.checked && !v3.checked
-                && !v4.checked && !v5.checked)
-                alert('select answer')
+                && !v4.checked && !v5.checked) {
+                document.getElementById("selectAnswer").style.display = 'block';
+                document.getElementById("selectAnswer").innerHTML = "You Should Select Answer";
+            }
 
             else {
-                // if(!v1.checked&&!v2.checked&&!v3.checked&&!v4.checked&&!v5.checked)
-                // alert('select answer')
-                for (let j = 0; j < 5; j++) {
+                document.getElementById("selectAnswer").style.display = 'none';
+                for (let j = 0; j < 4; j++) {
                     if (document.getElementsByName('value0')[j].checked)
                         arr.push(document.getElementsByName('value0')[j].value)
                 }
-                if (i < data.length - 1) { 
-                    for (let j = 0; j < 5; j++) 
+                if (i < data.length - 1) {
+                    for (let j = 0; j < 4; j++)
 
-                        checked[j].checked=0
+                        checked[j].checked = 0
                     i++;
-                    //display(i);
 
-                     title.innerHTML = `QUSETION ${i + 1}`;
-                     header.innerHTML = `Qusetion Header : ${data[i].Header}`
-                    // dev.innerHTML = `your result${checkans(arr)}`
-                     for (let j = 0; j < 5; j++) {
+                    title.innerHTML = `QUSETION ${i + 1}`;
+                    header.innerHTML = data[i].Header
+                    for (let j = 0; j < 4; j++) {
 
                         checked[j].setAttribute('value', `${data[i].Answers[j]}`)
-                         label[j].innerHTML = data[i].Answers[j]
-                     }
-                    
+                        label[j].innerHTML = data[i].Answers[j]
+                    }
+
 
                 }
                 else {
@@ -158,53 +135,35 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
                     finish.style.display = 'block';
                     finish.onclick = function () {
                         finish.style.display = 'none'
-                                       dev.innerHTML = `your result${checkans(arr)}`
-                        //                 for (let i = 0; i < 5; i++){
+                        result = document.createElement('div')
+                        result.setAttribute('class', 'results')
+                        result.innerHTML = `Your Result is: ${checkans(arr)}`
 
-                        // checked.setAttribute('value', `${data[index].Answers[i]}`)
-                        // label.innerHTML = data[index].Answers[i]
-                        //                 }
+                        dev.innerHTML = ""
+                        dev.style.justifyContent = 'center'
+                        dev.insertAdjacentElement("afterbegin", result);
                     }
                 }
             }
 
         }
 
-
-        let t=setInterval(() => {
+        let t = setInterval(() => {
             counter++;
             nextbutt.style.display = 'none';
-           console.log(counter);
+            console.log(counter);
             dev.innerHTML = 'SORRY,GAME OVER  :)';
             clearInterval(t);
-
-            //     else {
-            //         nextbutt.onclick = function () {
-            //             i++;
-            //             display(i);
-
-            //         }
-
-
-
-            //    }
-
-
         }, 1800000);
-
-
-
     }
-
-
 }
 
 ////////
-let container = document.getElementById('devid');
-let next = document.getElementById('nextbutt');
-let start = document.getElementById('stbutt');
+let container = document.getElementById('quizArea');
+let nextbutt = document.getElementById('nextbutt');
+let start = document.getElementById('start');
 let show = document.getElementById('showbutt');
 let hiden = document.getElementById('hide');
 let finish = document.getElementById('finish');
 let your_result = document.getElementById('result')
-showQues(data, 'devid', next, start, show);
+showQues(data, 'quizArea', nextbutt, start, show);
