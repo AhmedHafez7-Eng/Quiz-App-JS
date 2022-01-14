@@ -3,7 +3,7 @@ import { questions as ques } from './questions.js';
 
 const data = ques.Questions;
 
-var gender = "male";
+var gender = "female";
 
 ////////
 let App = document.getElementById("quizApp");
@@ -217,7 +217,7 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
                         }
 
                         result.innerHTML = `Your Result is: ${checkans(arr)} / ${ques.TotalDegree}`
-
+                        result.style.fontWeight = "bold"
                         if (checkans(arr) < 50) {
                             result.classList.add('bad')
                         } else if (checkans(arr) >= 50 && checkans(arr) <= 80) {
@@ -241,6 +241,14 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
             console.log(counter);
             dev.style.justifyContent = 'center'
             dev.innerHTML = `Time Out, Your Result is: ${checkans(arr)} / ${ques.TotalDegree}`;
+            dev.style.fontWeight = "bold"
+            if (checkans(arr) < 50) {
+                result.classList.add('bad')
+            } else if (checkans(arr) >= 50 && checkans(arr) <= 80) {
+                result.classList.add('good')
+            } else {
+                result.classList.add('perfect')
+            }
             clearInterval(t);
         }, 1_800_000);
     }
