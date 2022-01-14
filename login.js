@@ -9,8 +9,8 @@ document.getElementById("submitButton").addEventListener("click", (e) => {
     console.log(passwordInput);
     console.log(username);
     console.log(usernameInput);
-    if (usernameInput != username && passwordInput != password) {
-        e.preventDefault;
+    if (usernameInput != username || passwordInput != password) {
+        e.preventDefault();
         alert("wrong username or password");
     }
 })
