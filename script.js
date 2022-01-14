@@ -36,7 +36,7 @@ function createlabel(wheretoappend, index) {
 
     for (let i = 0; i < 4; i++) {
 
-        answer = document.createElement('div')
+        var answer = document.createElement('div')
         answer.setAttribute('class', 'answer')
 
         checked[i] = document.createElement('input')
@@ -60,7 +60,7 @@ function createlabel(wheretoappend, index) {
 function checkans(ans) {
     let result = 0;
     for (let i = 0; i < data.length; i++) {
-        if (data[i].Correctanswer == ans[i])
+        if (data[i].CorrectAnswer == ans[i])
             result += 10;
     }
     return result;
@@ -90,7 +90,7 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
             title.innerHTML = `QUSETION ${i + 1}`;
             header.innerHTML = data[i].Header
 
-            answersArea = document.createElement('div');
+            var answersArea = document.createElement('div');
             answersArea.setAttribute('class', 'answersArea');
             dev.appendChild(answersArea);
 
@@ -103,7 +103,7 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
             let [v1, v2, v3, v4] = document.getElementsByName('value0')
 
             if (!v1.checked && !v2.checked && !v3.checked
-                && !v4.checked && !v5.checked) {
+                && !v4.checked) {
                 document.getElementById("selectAnswer").style.display = 'block';
                 document.getElementById("selectAnswer").innerHTML = "You Should Select Answer";
             }
@@ -135,9 +135,9 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
                     finish.style.display = 'block';
                     finish.onclick = function () {
                         finish.style.display = 'none'
-                        result = document.createElement('div')
+                        var result = document.createElement('div')
                         result.setAttribute('class', 'results')
-                        result.innerHTML = `Your Result is: ${checkans(arr)}`
+                        result.innerHTML = `Your Result is: ${checkans(arr)} / ${ques.TotalDegree}`
 
                         dev.innerHTML = ""
                         dev.style.justifyContent = 'center'
