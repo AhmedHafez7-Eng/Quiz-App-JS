@@ -30,19 +30,20 @@ const data =
         }]
 
 /////////////////////////////////////////////////
-let arr = [];
+let arr = []; let label=[]; let checked=[];
 function createlabel(wheretoappend, index) {
-    let label; let checked;
+    
     for (let i = 0; i < 5; i++) {
-        checked = document.createElement('input')
-        label = document.createElement('label')
-        checked.setAttribute('type', 'radio')
-        checked.setAttribute('name', `value${index}`)
-        checked.setAttribute('value', `${data[index].Answers[i]}`)
-        wheretoappend.appendChild(checked)
-        wheretoappend.appendChild(label);
+        checked[i] = document.createElement('input')
+        label[i] = document.createElement('label')
+        checked[i].setAttribute('type', 'radio')
+        checked[i].setAttribute('name', `value${index}`)
+         checked[i].setAttribute('value', `${data[index].Answers[i]}`)
+        wheretoappend.appendChild(checked[i])
+        wheretoappend.appendChild(label[i]);
 
-        label.innerHTML = data[index].Answers[i]
+            label[i].innerHTML = data[index].Answers[i]
+        
 
 
     }
@@ -70,7 +71,7 @@ function checkans(ans) {
 // let your_result = document.getElementById('result')
 //showQues(data, 'devid', next, start, show)
 function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
-    let counter = 0; let i = 0;
+    let counter = 0; let i = 0; let title, header, answer
     let dev = document.getElementById(idOfDiv);
 
     stbutt.onclick = function () {
@@ -80,9 +81,9 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
         function display(i) {
 
 
-            let title = document.createElement('div');
-            let header = document.createElement('div');
-            let answer = document.createElement('label')
+            title = document.createElement('div');
+            header = document.createElement('div');
+            answer = document.createElement('label')
             dev.appendChild(title);
             dev.appendChild(header)
             title.innerHTML = `QUSETION ${i + 1}`;
@@ -113,10 +114,9 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
         }
 
         display(i)
-
-
+        
         nextbutt.onclick = function () {
-            let [v1, v2, v3, v4, v5] = document.getElementsByName(`value${i}`)
+            let [v1, v2, v3, v4, v5] = document.getElementsByName('value0')
             // if (i == data.length - 1) {
 
             //     nextbutt.style.display = 'none';
@@ -124,29 +124,46 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
             // }
             // // let [v1, v2, v3, v4] = document.getElementsByName(`value${i}`)
 
-            if (!v1.checked && !v2.checked && !v3.checked && !v4.checked && !v5.checked)
+            if (!v1.checked && !v2.checked && !v3.checked
+                && !v4.checked && !v5.checked)
                 alert('select answer')
 
             else {
                 // if(!v1.checked&&!v2.checked&&!v3.checked&&!v4.checked&&!v5.checked)
                 // alert('select answer')
                 for (let j = 0; j < 5; j++) {
-                    if (document.getElementsByName(`value${i}`)[j].checked)
-                        arr.push(document.getElementsByName(`value${i}`)[j].value)
+                    if (document.getElementsByName('value0')[j].checked)
+                        arr.push(document.getElementsByName('value0')[j].value)
                 }
-                if (i < data.length - 1) {
+                if (i < data.length - 1) { 
+                    for (let j = 0; j < 5; j++) 
+
+                        checked[j].checked=0
                     i++;
-                    //i++;display(i);
+                    //display(i);
 
+                     title.innerHTML = `QUSETION ${i + 1}`;
+                     header.innerHTML = `Qusetion Header : ${data[i].Header}`
+                    // dev.innerHTML = `your result${checkans(arr)}`
+                     for (let j = 0; j < 5; j++) {
 
-                    display(i)
+                        checked[j].setAttribute('value', `${data[i].Answers[j]}`)
+                         label[j].innerHTML = data[i].Answers[j]
+                     }
+                    
+
                 }
                 else {
                     nextbutt.style.display = 'none';
                     finish.style.display = 'block';
                     finish.onclick = function () {
                         finish.style.display = 'none'
-                        dev.innerHTML = `your result${checkans(arr)}`
+                                       dev.innerHTML = `your result${checkans(arr)}`
+                        //                 for (let i = 0; i < 5; i++){
+
+                        // checked.setAttribute('value', `${data[index].Answers[i]}`)
+                        // label.innerHTML = data[index].Answers[i]
+                        //                 }
                     }
                 }
             }
@@ -154,11 +171,12 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
         }
 
 
-        setInterval(() => {
-            showbutt.style.display = 'none';
+        let t=setInterval(() => {
+            counter++;
             nextbutt.style.display = 'none';
-            stbutt.style.display = 'none'
+           console.log(counter);
             dev.innerHTML = 'SORRY,GAME OVER  :)';
+            clearInterval(t);
 
             //     else {
             //         nextbutt.onclick = function () {
@@ -172,7 +190,7 @@ function showQues(data, idOfDiv, nextbutt, stbutt, showbutt) {
             //    }
 
 
-        }, 180000);
+        }, 1800000);
 
 
 
